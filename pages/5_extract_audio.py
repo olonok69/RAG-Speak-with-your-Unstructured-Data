@@ -26,8 +26,19 @@ OUT_FOLDER, TMP_FOLDER, ANSWERS_DIR, PROMPTS_DIR, DICTS_DIR = create_folders(
 logging.info(f"ROOT Folder {ROOT_DIR}")
 
 
-def change_state_5(st):
-    st.session_state["salir_5"] = True
+def change_state_5(st, placeholder):
+    """
+    change state after leave conversation
+    params:
+    st (streamlit): streamlit object
+    placeholder (streamlit.empty): placeholder
+
+    """
+
+    placeholder.empty()
+    reset_session_5(st, ss)
+    st.stop()
+    del placeholder
     return
 
 
@@ -119,12 +130,13 @@ def main(
                     ):
 
                         audio1 = base64.b64encode(binary_data).decode("utf8")
-                        audio1 = Part.from_data(
+                        audio = Part.from_data(
                             mime_type="audio/wav",
                             data=audio1,
                         )
-                        contents = [audio1, input_prompt]
-                        # embed()
+
+                        contents = [audio, input_prompt]
+
                         responses = st.session_state["chat5"].generate_content(contents)
 
                         st.session_state.value5 = 2  # pages selected
@@ -133,24 +145,20 @@ def main(
                             + "\n"
                             + "Response:"
                             + "\n"
-                            + responses.text
+                            + str(responses.text)
                         )
 
         with row1_2:
-            if st.button("Salir", on_click=change_state_5, args=(st,)):
-                st.session_state["salir_5"] = True
-                placeholder.empty()
-                reset_session_5(st, ss)
-                st.stop()
-                del placeholder
+            if st.button(
+                "Leave Conversation", on_click=change_state_5, args=(st, placeholder)
+            ):
+                logging.info("Salir and writing history")
 
             with st.expander(
                 "���️ Instruction to send to Model 👇",
                 expanded=st.session_state["expander_5"],
             ):
-                _ = st.text_area(
-                    "Status selection", "", key="upload_state5", height=500
-                )
+                _ = st.text_area("Status selection", key="upload_state5", height=500)
 
     except:
 
@@ -207,7 +215,7 @@ if __name__ == "__main__":
             # Initialize Model
             if "chat5" not in st.session_state:
                 st.session_state["chat5"] = init_model(config=config)
-            logging.info(f"Model {config.get('MODEL')} initialized")
+                logging.info(f"Model {config.get('MODEL')} initialized")
             main(
                 col1=col1,
                 col2=col2,

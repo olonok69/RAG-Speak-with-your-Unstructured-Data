@@ -143,8 +143,8 @@ def reset_session_1(st, ss):
     del st.session_state["file_history1"]
     del st.session_state["prompt_introduced1"]
     del st.session_state["chat_true1"]
-    del ss.pdf_ref
-    del st.session_state.value
+    del ss.pdf_ref1
+    del st.session_state.value1
     # buttom send to gemini
     del st.session_state["vcol1doc"]
     del st.session_state["vcol2doc"]
@@ -155,7 +155,7 @@ def reset_session_1(st, ss):
     del st.session_state["pdf_viewer"]
     del st.session_state["pdf_query"]
     del st.session_state["upload_state1"]
-    del st.session_state["salir_1"]
+    st.session_state["salir_1"] = False
 
     return
 
@@ -218,6 +218,7 @@ def reset_session_4(st, ss):
     # objects
     del st.session_state["image_loader"]
     del st.session_state["image_input4"]
+    st.session_state["salir_4"] = False
     return
 
 
@@ -281,7 +282,7 @@ def reset_session_2(st, ss):
     del st.session_state["pdf_query_extract2"]
     del st.session_state["pdf_viewer2"]
     del st.session_state["uploader_pdf"]
-
+    st.session_state["salir_2"] = False
     return
 
 
@@ -342,6 +343,7 @@ def reset_session_3(st, ss):
     del st.session_state["excel_loader"]
     del st.session_state["select_sheet"]
     del st.session_state["dataframe_query_extract"]
+    st.session_state["salir_3"] = False
     return
 
 
@@ -398,7 +400,7 @@ def reset_session_5(st, ss):
     # objects
     del st.session_state["audio_loader"]
     del st.session_state["input_audio"]
-    del st.session_state["salir_5"]
+    st.session_state["salir_5"] = False
 
     return
 
@@ -458,7 +460,7 @@ def reset_session_6(st, ss):
     # objects
     del st.session_state["video_loader"]
     del st.session_state["input_video"]
-    del st.session_state["salir_6"]
+    st.session_state["salir_6"] = False
     return
 
 
@@ -530,7 +532,7 @@ def reset_session_7(st, ss):
     del st.session_state["text_splitter"]
     # objects
     del st.session_state["html_query"]
-    del st.session_state["salir_7"]
+    st.session_state["salir_7"] = False
 
     return
 
@@ -632,7 +634,6 @@ def reset_session_8(st, ss):
     # delete objects
     del st.session_state["pdf"]
     del st.session_state["pdf_viewer"]
-    del st.session_state["pdf_query"]
     del st.session_state["upload_state8"]
     del st.session_state["click_button_parse8"]
     del st.session_state["salir_8"]

@@ -27,8 +27,18 @@ OUT_FOLDER, TMP_FOLDER, ANSWERS_DIR, PROMPTS_DIR, DICTS_DIR = create_folders(
 logging.info(f"ROOT Folder {ROOT_DIR}")
 
 
-def change_state_2(st):
-    st.session_state["salir_2"] = True
+def change_state_2(st, placeholder):
+    """
+    change state after leave conversation
+    params:
+    st (streamlit): streamlit object
+    placeholder (streamlit.empty): placeholder
+
+    """
+    placeholder.empty()
+    reset_session_2(st, ss)
+    st.stop()
+    del placeholder
     return
 
 
@@ -101,11 +111,11 @@ def main(
 
                         binary_data = ss.pdf_ref2
                         if st.session_state["vcol1doc2"] == 50:
-                            width = 700
+                            width = 800
                         elif st.session_state["vcol1doc2"] == 20:
                             width = 350
                         else:
-                            width = 700
+                            width = 800
                             # Visualize PDF
                         pdf_viewer(
                             input=binary_data,
@@ -145,12 +155,10 @@ def main(
                             )
 
         with row1_2:
-            if st.button("Salir", on_click=change_state_2, args=(st,)):
-                st.session_state["salir_2"] = True
-                placeholder.empty()
-                reset_session_2(st, ss)
-                st.stop()
-                del placeholder
+            if st.button(
+                "Leave Conversation", on_click=change_state_2, args=(st, placeholder)
+            ):
+                logging.info("Salir and writing history")
 
             with st.expander(
                 "���️ Instruccion to send to Model 👇👇",

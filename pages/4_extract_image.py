@@ -28,8 +28,19 @@ OUT_FOLDER, TMP_FOLDER, ANSWERS_DIR, PROMPTS_DIR, DICTS_DIR = create_folders(
 logging.info(f"ROOT Folder {ROOT_DIR}")
 
 
-def change_state_4(st):
-    st.session_state["salir_4"] = True
+def change_state_4(st, placeholder):
+    """
+    change state after leave conversation
+    params:
+    st (streamlit): streamlit object
+    placeholder (streamlit.empty): placeholder
+
+    """
+
+    placeholder.empty()
+    reset_session_4(st, ss)
+    st.stop()
+    del placeholder
     return
 
 
@@ -134,15 +145,10 @@ def main(
                         )
 
         with row1_2:
-            if st.button("Salir", on_click=change_state_4, args=(st,)):
-                st.session_state["salir_4"] = True
-                placeholder.empty()
-                # del placeholder
-                reset_session_4(st, ss)
-                st.stop()
-                del row1_1
-                del row1_2
-                del placeholder
+            if st.button(
+                "Leave Conversation", on_click=change_state_4, args=(st, placeholder)
+            ):
+                logging.info("Salir and writing history")
 
             with st.expander(
                 "���️ Instruccion to send to Model 👇👇",

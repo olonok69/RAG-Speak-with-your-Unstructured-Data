@@ -36,8 +36,18 @@ pname, pname2, df_pdfs = open_table_pdfs(ANSWERS_DIR)
 onlyfiles = df_pdfs["filename"].to_list()
 
 
-def change_state_1(st):
-    st.session_state["salir_1"] = True
+def change_state_1(st, placeholder):
+    """
+    change state after leave conversation
+    params:
+    st (streamlit): streamlit object
+    placeholder (streamlit.empty): placeholder
+
+    """
+    placeholder.empty()
+    reset_session_1(st, ss)
+    st.stop()
+    del placeholder
     return
 
 
@@ -201,12 +211,10 @@ def main(
                             (input_prompt, result["answer"])
                         )
         with row1_2:
-            if st.button("Salir", on_click=change_state_1, args=(st,)):
-                st.session_state["salir_1"] = True
-                placeholder.empty()
-                reset_session_1(st, ss)
-                st.stop()
-                del placeholder
+            if st.button(
+                "Leave Conversation", on_click=change_state_1, args=(st, placeholder)
+            ):
+                logging.info("Salir and writing history")
 
             with st.expander(
                 "���️ Instruccion to send to Model 👇👇",

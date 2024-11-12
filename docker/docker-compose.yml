@@ -1,5 +1,5 @@
 # https://www.elastic.co/blog/getting-started-with-the-elastic-stack-and-docker-compose
-version: "3.8"
+# version: "3.8"
 
 volumes:
   certs:

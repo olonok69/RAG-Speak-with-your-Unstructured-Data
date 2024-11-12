@@ -1,5 +1,5 @@
-streamlit
-google-cloud-aiplatform
+streamlit==1.39.0
+#google-cloud-aiplatform
 pandas
 numpy
 python-dotenv
@@ -8,7 +8,6 @@ st-pages
 PyMuPDF
 streamlit_pdf_viewer==0.0.12
 ipython
-google-cloud-logging
 scikit-learn
 langchain-pinecone
 langchain 
