@@ -223,9 +223,7 @@ def main(
                         # add History
                         st.session_state["chat_history7"].append((input_prompt, result))
         with row1_2:
-            if st.button(
-                "Leave Conversation", on_click=change_state_7, args=(st, placeholder)
-            ):
+            if st.button("Salir", on_click=change_state_7, args=(st, placeholder)):
                 logging.info("Salir and writing history")
 
             with st.expander(

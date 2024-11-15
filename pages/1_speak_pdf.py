@@ -211,9 +211,7 @@ def main(
                             (input_prompt, result["answer"])
                         )
         with row1_2:
-            if st.button(
-                "Leave Conversation", on_click=change_state_1, args=(st, placeholder)
-            ):
+            if st.button("Salir", on_click=change_state_1, args=(st, placeholder)):
                 logging.info("Salir and writing history")
 
             with st.expander(
