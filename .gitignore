@@ -26,6 +26,5 @@ faiss/companies.faiss
 faiss/companies.pkl
 docker/ollama/
 logs/
-data/*.mp4
 faiss/.milvus_example.db.lock
 faiss/milvus_example.db

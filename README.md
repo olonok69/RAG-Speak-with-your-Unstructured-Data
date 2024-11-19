@@ -34,7 +34,39 @@ Here we use the integration of Langchain with Pandas Library to manipulate excel
 ### Extract Image
 Here we load an Image to a multimodal model and send a prompt asking for some information. We can use as well a similar approach that we did on extract from pdf using a pydantic data model. As LLM,default gemini-1.5-flash-002, but you can use any multimodal LLM in Gemini API.
 
-![alt text](image.png)
+![alt text](images/4image.png)
+
+### Extract Audio
+Here we load an audio to a multimodal model and send a prompt asking for some information. We can use as well a similar approach that we did on extract from pdf using a pydantic data model. As LLM,default gemini-1.5-flash-002, but you can use any multimodal LLM in Gemini API.
+
+![alt text](images/5image.png)
+
+### Extract Video
+Here we load an video to a multimodal model and send a prompt asking for some information. We can use as well a similar approach that we did on extract from pdf using a pydantic data model. As LLM,default gemini-1.5-flash-002, but you can use any multimodal LLM in Gemini API.
+
+![alt text](images/6image.png)
+
+### Extract html
+Here we load a number of html web pages and extract text and tables using BeautifulSoup. Here we use the infrastructure of NVIDIA NIM and its SDK to call models for embeddings and generate text:
+- NVIDIA_EMBEDDINGS=NV-Embed-QA
+- NVIDIA_MODEL=microsoft/phi-3-small-128k-instruct (here we can use as well LLama3.2 3b Instruct or any other llm text able).
+
+To split the text in this case we use the following model
+TEXT_SPLITTER_MODEL=intfloat/e5-large-v2
+
+As vector store we use Milvus or Elastic
+
+![alt text](images/7image.png)
+
+### Speak pdf multi
+Here we use a tool like pymupdf or pymupdf4llm to extract text images and tables from a pdf. One we have these elements, we use a Multimodal LLM, in this case gemini-1.5-flash-002, to create descriptive summaries of them. Then we use a embeddings model to to create embeddings of those summaries. 
+One we have the embeddings we create id,s for all those summaries and embeddings and we upload them to a vector store (Chroma in this case) with metadata related to the document and page where the origen of the summary it is located. Last step we upload in binary format(images here) or the original text to any specific summary to the Chroma DocStore and link embedding, summary and original source using the id. 
+
+When we query or ask the model, we will create an embedding of the query , get the top 5 more relevant vectors similar to the query and using the ID,s of those documents, Chroma will return the binary data source of those ID,s. 
+
+Then the LLM will produce an anwer using the binary data (images or other unstructured format), original text returned from the docStore and the query introduced by the user
+
+![alt text](images/8image.png)
 
 # Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
