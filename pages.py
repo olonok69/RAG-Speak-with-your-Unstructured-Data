@@ -23,7 +23,7 @@ def main(config):
         st.session_state["name"] = None
     if "username" not in st.session_state:
         st.session_state["username"] = None
-    st.title("Premcloud RAG Capabilities Demo")
+    st.title("RAG Capabilities Demo")
     if "root_dir" not in st.session_state:
         st.session_state["root_dir"] = os.path.dirname(os.path.abspath(__file__))
 
