@@ -1,0 +1,14 @@
+credentials:
+  usernames:
+    user1:
+      email: test@test.com
+      name: user1 
+      password:  text#me
+    nvidiademo:
+      email: demo@test.com
+      name: nvidiademo
+      password:  laPalma50 
+cookie:
+  expiry_days: 0
+  key: Nodeed # Must be string
+  name: thecokkei

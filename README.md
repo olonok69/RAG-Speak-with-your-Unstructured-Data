@@ -69,20 +69,69 @@ Then the LLM will produce an anwer using the binary data (images or other unstru
 ![alt text](images/8image.png)
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
 1.	Installation process
+    - create docker : docker build --pull --rm --build-arg user_app=app -f "Dockerfile" -t demo-ai-rag:latest "."
+    - create compose : docker compose -f "docker/docker-compose-yml" up --build
+    - create .env file. example [here](docs/env.md) and place in the keys folder
+    - copy your Goocle cloude service account .json file to keys folder
+    - create user for streamlit and place config.yaml in keys folder
 2.	Software dependencies
+    - python 3.11
+    - requiremrents file [here](requirements.txt)
 3.	Latest releases
 4.	API references
 
+# Project Structure
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+![alt text](images/project.png)
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+# How to create Users and Passwords to this app
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+create a yaml file with name config.yaml in the keys folder
+here you have and example with 2 users user1 and nvidiademo
+```
+credentials:
+  usernames:
+    user1:
+      email: test@gmail.com
+      name: user1 
+      password: $2b$12$ZoeMqMyYQZqFGM7iF2bugeYG3E1kL7RA8jLkTvPcpdIlpIz46Yz/i # To be replaced with hashed password
+    nvidiademo:
+      email: demo@nvidia.com
+      name: nvidiademo
+      password: $2b$12$vL2J2PauSXISet6wZIM0j.DFZdq7cyrJ/2TQEn8UT.NyxZuKGfEZa # To be replaced with hashed password
+cookie:
+  expiry_days: 0
+  key: laPalma50 # Must be string
+  name: thecokkei
+  ```
+
+
+  ###### To generate the hashes
+  - Go to the folder hasher and edit the file ex.yaml
+  - Fill email , name and password with your values
+  - Run hasher.py
+  - Replace the password in config.yaml with its hash value
+
+  ```
+  credentials:
+  usernames:
+    user1:
+      email: test@gmail.com
+      name: user1 
+      password:  text#me
+    nvidiademo:
+      email: demo@nvidia.com
+      name: nvidiademo
+      password:  laPalma50 
+cookie:
+  expiry_days: 0
+  key: laPalma50 # Must be string
+  name: thecokkei
+  ```
+
+  OUTPUT
+
+  ```
+  {'usernames': {'user1': {'email': 'test@gmail.com', 'name': 'user1', 'password': '$2b$12$ZoeMqMyYQZqFGM7iF2bugeYG3E1kL7RA8jLkTvPcpdIlpIz46Yz/i'}, 'nvidiademo': {'email': 'demo@nvidia.com', 'name': 'nvidiademo', 'password': '$2b$12$vL2J2PauSXISet6wZIM0j.DFZdq7cyrJ/2TQEn8UT.NyxZuKGfEZa'}}}
+  ```
