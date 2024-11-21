@@ -1,4 +1,19 @@
 # RAG: Speak with your Unstructured Data
+The explanation in Video is available in my youtube Channel https://www.youtube.com/@themachinelearningengineer
+
+### Subscribe
+https://www.youtube.com/@themachinelearningengineer?sub_confirmation=1
+
+### Videos in English:
+- Part 1 Use cases  https://youtu.be/UZd-Sb0qmZI
+- Part 2 Review Code https://youtu.be/5c526BAxyU4
+- Part 3 Docker and Docker-compose 
+
+### Videos in Spanish
+- Part 1 Use cases  https://youtu.be/qjgQUs4eJ34
+- Part 2 Review Code https://youtu.be/cIf-ITLsYBk
+- Part 3 Docker and Docker-compose  https://youtu.be/J2vQapnbFGU
+
 
 # Introduction 
 This repo constains an E2E Rag application which showcases diferent use and Integrations of Langchain with other technologies to "chat" with your Unstructured Data (audio, video, images, pdf, excel, csv and html).
@@ -69,9 +84,11 @@ Then the LLM will produce an anwer using the binary data (images or other unstru
 ![alt text](images/8image.png)
 
 # Getting Started
+Documentation Elastic --> https://www.elastic.co/blog/getting-started-with-the-elastic-stack-and-docker-compose
+
 1.	Installation process
     - create docker : docker build --pull --rm --build-arg user_app=app -f "Dockerfile" -t demo-ai-rag:latest "."
-    - create compose : docker compose -f "docker/docker-compose-yml" up --build
+    - create compose : docker compose -f "docker/docker-compose.yml" up --build
     - create .env file. example [here](docs/env.md) and place in the keys folder
     - copy your Goocle cloude service account .json file to keys folder
     - create user for streamlit and place config.yaml in keys folder

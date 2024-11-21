@@ -85,8 +85,8 @@ if __name__ == "__main__":
     if os.path.exists(folder_path) and os.path.isdir(folder_path):
         shutil.rmtree(folder_path)
     # key access gemini
-    if "GOOGLE_API_KEY" not in os.environ:
-        os.environ["GOOGLE_API_KEY"] = config.get("GEMINI-API-KEY")
+    if "GEMINI_API_KEY" not in os.environ:
+        os.environ["GEMINI_API_KEY"] = config.get("GEMINI-API-KEY")
     with open("keys/config.yaml") as file:
         config = yaml.load(file, Loader=SafeLoader)
 
