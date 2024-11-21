@@ -7,7 +7,7 @@ https://www.youtube.com/@themachinelearningengineer?sub_confirmation=1
 ### Videos in English:
 - Part 1 Use cases  https://youtu.be/UZd-Sb0qmZI
 - Part 2 Review Code https://youtu.be/5c526BAxyU4
-- Part 3 Docker and Docker-compose 
+- Part 3 Docker and Docker-compose https://youtu.be/yUk9jHY2QCY
 
 ### Videos in Spanish
 - Part 1 Use cases  https://youtu.be/qjgQUs4eJ34
